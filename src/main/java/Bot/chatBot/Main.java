@@ -22,16 +22,8 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 
 @Slf4j
 public class Main extends ListenerAdapter {
-    ArrayList<String> player = new ArrayList<>();
-
     private final UserRepository userRepository;
-    boolean game_flag = false;
-    int flag = 0;
-    int count = 0;
-    int game_count = 2;
-    int ans[];
-    String s;
-    int index;
+
 
     public static void main(String[] args) {
 
@@ -70,12 +62,13 @@ public class Main extends ListenerAdapter {
 
         if (messageContent.charAt(0) == '!') {
             String command = messageContent.substring(1);
-            FrontController.handleCommand(command, chatUser, tc, g);
+            FrontController.handleCommand(userRepository, command, chatUser, tc, g);
         }
     }
 
+    public static void findUserID(String banUser) {
 
-
+    }
     public static void showMessage(TextChannel tc, String message) {
         tc.sendMessage(message).queue();
     }
@@ -87,24 +80,6 @@ public class Main extends ListenerAdapter {
 
 }
             //대답문
-//
-//                else if(str.equalsIgnoreCase("링크")) {
-//
-//                    EmbedBuilder eb = new EmbedBuilder();
-//                    eb.setTitle( "발로란트 전적 사이트"," https://dak.gg/valorant");
-//                    tc.sendMessageEmbeds(eb.build()).queue();
-//                    eb.setTitle( "하스스톤 야생 사이트", "https://tempostorm.com/hearthstone");
-//                    tc.sendMessageEmbeds(eb.build()).queue();
-//                }
-//
-//                else if(str.equalsIgnoreCase("가이드")) {
-//                    EmbedBuilder eb = new EmbedBuilder();
-//                    eb.setTitle("바이퍼 셋팅 가이드", "https://docs.google.com/document/u/0/d/1kPHF61JHqZm_caKTQjg_tyocGSuOoCWVt5YpCZRBu5U/mobilebasic"
-//                    );
-//                    tc.sendMessageEmbeds(eb.build()).queue();
-//                    eb.setTitle("스플릿 소바 가이트" , "https://gall.dcinside.com/mgallery/board/view/?id=projecta&no=492318&search_head=30&page=1");
-//                    tc.sendMessageEmbeds(eb.build()).queue();
-//                }
 //
 //                else if(str.equalsIgnoreCase("용준컷")) {
 //
