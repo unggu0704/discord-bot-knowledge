@@ -6,12 +6,13 @@ import net.dv8tion.jda.api.entities.User;
 
 public class UserData {
     @Getter
-    public User user;
-    Member member;
+    private User user;
     @Getter
-    public int negativeSpeechCount = 0;
+    private Member member;
     @Getter
-    public String name;
+    private int negativeSpeechCount = 0;
+    @Getter
+    private String name;
 
     public UserData(User user, String name, Member m) {
         this.name = name;
