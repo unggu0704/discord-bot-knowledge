@@ -1,7 +1,11 @@
 
 package Bot.chatBot;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
+import java.util.logging.Logger;
 
 import Bot.data.UserData;
 
@@ -26,12 +30,17 @@ public class Main extends ListenerAdapter {
 
 
     public static void main(String[] args) {
+        log.info("봇이 실행됨!");
+        String Token = readTokenFromFile("Token.txt");
+        if (Token.equals("Empty")) {
+            throw new RuntimeException("[ERROR] | 토큰을 읽는데 실패함!");
+        }
 
-        JDA jda = JDABuilder.createDefault("MTA3NjgwNjIwNzk2MjEwMzgwOA.Gbzcxn.vWrelnDAF_n1Vk1EmyLcKIAH1CUGdxx8ZpKys8")
-                .enableIntents(GatewayIntent.MESSAGE_CONTENT) // enables explicit access to message.getContentDisplay()
+        JDA jda = JDABuilder.createDefault(Token)
+                .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .build();
         jda.getPresence().setStatus(OnlineStatus.ONLINE);
-        jda.getPresence().setActivity(Activity.playing("test! "));
+        jda.getPresence().setActivity(Activity.playing("test!"));
         jda.addEventListener(new Main());
 
     }
@@ -66,8 +75,14 @@ public class Main extends ListenerAdapter {
         }
     }
 
-    public static void findUserID(String banUser) {
-
+    private static String readTokenFromFile(String filePath) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            return br.readLine().split("=")[1].trim();
+        } catch (IOException e) {
+            e.printStackTrace();
+            //log.error("Token 읽기 실패!");
+            return "Empty";
+        }
     }
     public static void showMessage(TextChannel tc, String message) {
         tc.sendMessage(message).queue();
@@ -79,40 +94,6 @@ public class Main extends ListenerAdapter {
 
 
 }
-            //대답문
-//
-//                else if(str.equalsIgnoreCase("용준컷")) {
-//
-//                    int index = yong_Check();
-//                    if(index != -1) {
-//                        g.ban(ul.get(index).member, 600, TimeUnit.SECONDS).queue();
-//                        tc.sendMessage("bye~ bye~ 용준ちゃん~").queue();
-//                        ul.remove(index);
-//                    }
-//                    else {
-//                        tc.sendMessage("아직 그가 없거나 아무 말도 하지 않았습니다.").queue();
-//                    }
-//                }
-//
-//                else if(str.equalsIgnoreCase("저장")) {
-//                    UserDataController.isCSVrite(ul); // 유저리스트 저장
-//                    tc.sendMessage("저장중... ").queue();
-//                }
 
-//
-//
-//
-//    int yong_Check() {
-//        for(int i = 0; i< ul.size(); i++) {
-//            if(ul.get(i).getName().equals("AT FULL BLAST")) {
-//                return i;
-//            }
-//        }
-//        return -1;
-//    }
-//
-//
-//
-//}
 
 
