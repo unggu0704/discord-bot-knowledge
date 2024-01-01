@@ -1,6 +1,7 @@
 package Bot.data;
 
 import lombok.extern.slf4j.Slf4j;
+import net.dv8tion.jda.api.entities.Member;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -23,7 +24,13 @@ public class UserRepository {
         userReository.add(userData);
     }
 
-    public void getUser() {
+    public Member getMemberByName(String name) {
+        for (UserData userData : userReository) {
+            if (userData.getName().equals(name)) {
+                return userData.getMember();
+            }
+        }
+        return null;
     }
 
     public void updateUser() {
