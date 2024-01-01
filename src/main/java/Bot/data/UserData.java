@@ -20,16 +20,9 @@ public class UserData {
         this.member = m;
     }
 
-    public UserData(String name) {
-        this.name = name;
-    }
 
     public void isNegativeSpeechCount() {
         negativeSpeechCount++;
-    }
-
-    public User Getuser() {
-        return user;
     }
 
 }
