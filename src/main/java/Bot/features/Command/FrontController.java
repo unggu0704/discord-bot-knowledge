@@ -2,6 +2,7 @@ package Bot.features.Command;
 
 import Bot.chatBot.Main;
 import Bot.data.UserData;
+import Bot.data.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
@@ -13,7 +14,8 @@ import java.util.List;
 public class FrontController {
 
     private static final List<ValorantCommand> gameList = new ArrayList<>();
-    public static void handleCommand(String command, UserData user, TextChannel tc, Guild guild) {
+
+    public static void handleCommand(UserRepository userRepository, String command, UserData user, TextChannel tc, Guild guild) {
         log.info("Command : " + command);
         switch (command) {
             case "도움":
@@ -45,6 +47,14 @@ public class FrontController {
                 Main.showMessage(tc, "수고하셨습니다.");
                 gameList.remove(findGuild(gameList, guild));
                 break;
+            case "링크":
+                LinkCommand.provideLink(tc);
+                break;
+            case "용준컷":
+                BanCommand.yongJunKill(userRepository, tc, guild);
+                break;
+
+
         }
     }
 
