@@ -3,4 +3,4 @@
  ![Static Badge](https://img.shields.io/badge/DiscordApi-JDA-8A2BE2) 
 
 
-본 프로그램은 오픈소스 api인 *[jda](https://github.com/discord-jda/JDA])* 를 활용해서 만든 Java기반 Discord Bot 입니다.
+본 프로그램은 오픈소스 api인 *[jda](https://github.com/discord-jda/JDA)* 를 활용해서 만든 Java기반 Discord Bot 입니다.
