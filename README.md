@@ -1,4 +1,10 @@
-# 디스코드 봇 리팩토링하기
-> https://github.com/discord-jda/JDA
+# JDA를 활용한 Discord Bot 만들기
+![Static Badge](https://img.shields.io/badge/Java-3766AB)
+ ![Static Badge](https://img.shields.io/badge/DiscordApi-JDA-8A2BE2) 
 
-고대 유물 꺼내와서 리팩토링하기
+본 프로그램은 오픈소스 api인 *[jda](https://github.com/discord-jda/JDA)* 를 활용해서 만든 Java기반 Discord Bot 입니다.
+
+ 2022. 08 ~ 2022. 09
+      
+---
+ 2023. 12 ~ 리팩토리중
