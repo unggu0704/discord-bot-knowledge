@@ -1,8 +1,9 @@
-package Bot.features.Command;
+package Bot.features.Command.Valorant;
 
 import Bot.chatBot.Main;
 import Bot.data.UserData;
-import lombok.Getter;
+import Bot.data.UserRepository;
+import Bot.features.Command.BasicCommand;
 import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
@@ -11,17 +12,35 @@ import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import java.util.ArrayList;
 import java.util.List;
 @Slf4j
-public class ValorantCommand {
+public class ValorantCommand implements BasicCommand {
     private final List<UserData> valorantUserLists = new ArrayList<>();
 
     private Guild guild;
-    private final TextChannel tc;
-
-    ValorantCommand(Guild guild, TextChannel tc) {
+    private TextChannel tc;
+    public void execute(UserRepository userRepository, UserData user, TextChannel tc, Guild guild, String command) {
         Main.showMessage(tc, "발로란트 하실분 @here");
         this.guild = guild;
         this.tc = tc;
+
+        switch (command) {
+            case "참가":
+                joinGame(user);
+                break;
+            case "동원령":
+                forceStartGame();
+                break;
+            case "나가기":
+                exitGame(user);
+                break;
+            case "현재인원":
+                printUserList();
+                break;
+            case "해산":
+                Main.showMessage(tc, "수고하셨습니다.");
+                break;
+        }
     }
+
     public  boolean checkSize() {
         if (valorantUserLists.size() >=5) {
             Main.showMessage(tc, "5명이 가득핬습니다.");
