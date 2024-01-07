@@ -1,4 +1,4 @@
-package Bot.features.Command;
+package Bot.features.Functions;
 
 import Bot.chatBot.Main;
 import Bot.data.UserRepository;
@@ -10,12 +10,9 @@ import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class BanCommand {
+public class Ban {
 
-    private static final String USER_NAME = "";
-    private static final String YONGJUN = "AT FULL BLAST";
-
-    public static void isBan(UserRepository userRepository, TextChannel tc, Guild guild, String userName) {
+    public static void execute(UserRepository userRepository, TextChannel tc, Guild guild, String userName) {
 
         Member banMember = userRepository.getMemberByName(userName);
         log.info(banMember.toString() + "을 찾으러감");
@@ -28,11 +25,6 @@ public class BanCommand {
         log.info("ban 실행");
         Main.showMessage(tc, "bye~ " + userName + "씨~");
     }
-
-    public static void yongJunKill(UserRepository userRepository, TextChannel tc, Guild guild) {
-        isBan(userRepository, tc, guild, YONGJUN);
-    }
-
 
 
 }
