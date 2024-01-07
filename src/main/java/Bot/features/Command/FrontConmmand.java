@@ -12,8 +12,14 @@ import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 
 import java.util.HashMap;
 import java.util.Map;
+
+/**
+ * 명령어 핸들러
+ * 모든 명령어 관리
+ */
 @Slf4j
 public class FrontConmmand {
+
 
     private static final Map<String, BasicCommand> COMMAND_MAP = new HashMap<>();
 
@@ -29,6 +35,7 @@ public class FrontConmmand {
         COMMAND_MAP.put("현재인원", new ValorantCommand());
         COMMAND_MAP.put("해산", new ValorantCommand());
         COMMAND_MAP.put("용준컷", new YongJunBan());
+        // 추가 명령어 매핑 여기에 아기
     }
 
     public static void handleCommand(UserRepository userRepository, String command, UserData user, TextChannel tc, Guild guild) {

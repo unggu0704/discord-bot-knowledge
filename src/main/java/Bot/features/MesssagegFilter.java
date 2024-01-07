@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MesssagegFilter {
 
-    private static final int limitNefativeSpeechCount = 3;
+    private static final int limitNativeSpeechCount = 3;
     public static void profanityFilter(String msg, UserData user, Member target, TextChannel tc, Guild g, UserRepository userRepository) {
         Main.showMessage(tc, "부정적인 발언이 감지 되었습니다. 지속적으로 사용시 재제됨을 알려드립니다.");
 
@@ -20,7 +20,7 @@ public class MesssagegFilter {
             Main.showMessage(tc, user.getUser().getAsMention() + "   (" + user.getNegativeSpeechCount() + "/3)");
         }
 
-        if (user.getNegativeSpeechCount() >= limitNefativeSpeechCount) {
+        if (user.getNegativeSpeechCount() >= limitNativeSpeechCount) {
             g.ban(target, 60, TimeUnit.SECONDS).queue();
             Main.showMessage(tc, user.getUser().getAsMention() + "제거 완료!");
         }

@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import Bot.data.UserData;
 
 import Bot.data.UserRepository;
+import Bot.features.Command.FrontConmmand;
 import Bot.features.Command.FrontController;
 import Bot.features.MesssagegFilter;
 import lombok.extern.slf4j.Slf4j;
@@ -68,10 +69,10 @@ public class Main extends ListenerAdapter {
         if (MesssagegFilter.containsNegativeSpeech(messageContent))
             MesssagegFilter.profanityFilter(messageContent, chatUser, member, tc, g, userRepository);
 
-
+        //명령어 symbol 체크
         if (messageContent.charAt(0) == '!') {
             String command = messageContent.substring(1);
-            FrontController.handleCommand(userRepository, command, chatUser, tc, g);
+            FrontConmmand.handleCommand(userRepository, command, chatUser, tc, g);
         }
     }
 
