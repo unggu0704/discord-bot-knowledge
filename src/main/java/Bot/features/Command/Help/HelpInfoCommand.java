@@ -11,7 +11,7 @@ import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 public class HelpInfoCommand implements BasicCommand {
     private static final EmbedBuilder eb = new EmbedBuilder();
 
-    public void execute(UserRepository userRepository, UserData user, TextChannel tc, Guild guild) {
+    public void execute(UserRepository userRepository, UserData user, TextChannel tc, Guild guild, String Command) {
         eb.setTitle("! 도움1 : 발로란트 관련 명령어 \n"
                 + "! 도움2: 기타 명령어 "
         );

@@ -11,7 +11,7 @@ import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 public class HelpValorantCommand implements BasicCommand {
     private static final EmbedBuilder eb = new EmbedBuilder();
 
-    public void execute(UserRepository userRepository, UserData user, TextChannel tc, Guild guild) {
+    public void execute(UserRepository userRepository, UserData user, TextChannel tc, Guild guild, String Command) {
         eb.setTitle("! 발로란트 : 발로란트 파티 리스트를 엽니다. (온라인에게 알람이 갑니다.) \n"
                 + "! 동원령 : 모든 플레이어들에게 알람이 갑니다. \n"
                 + "! 참가: 발로란트 리스트에 본인을 추가합니다. \n"
