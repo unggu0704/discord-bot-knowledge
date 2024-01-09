@@ -13,16 +13,20 @@ public class UserData {
     private int negativeSpeechCount = 0;
     @Getter
     private String name;
+    @Getter
+    private String id;
+    @Getter
+    private String discriminator;
 
     public UserData(User user, String name, Member m) {
         this.name = name;
         this.user = user;
         this.member = m;
+        this.id = user.getId();
+        this.discriminator = user.getDiscriminator();
     }
-
 
     public void isNegativeSpeechCount() {
         negativeSpeechCount++;
     }
-
 }
