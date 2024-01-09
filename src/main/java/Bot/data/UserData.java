@@ -18,6 +18,10 @@ public class UserData {
     @Getter
     private String discriminator;
 
+    public UserData() {
+    }
+
+
     public UserData(User user, String name, Member m) {
         this.name = name;
         this.user = user;
