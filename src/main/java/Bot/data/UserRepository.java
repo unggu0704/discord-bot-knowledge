@@ -26,11 +26,13 @@ public class UserRepository {
     }
 
     public void saveJsonUser() {
-        try {
-            objectMapper.writeValue(new File(jsonFilePath), userRepository);
-            log.info("User 저장완료");
-        } catch (IOException e) {
-            e.printStackTrace();
+        synchronized (userRepository) {
+            try {
+                objectMapper.writeValue(new File(jsonFilePath), userRepository);
+                log.info("User 저장완료");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -59,6 +61,11 @@ public class UserRepository {
                     });
 
             // 읽어온 데이터를 userRepository에 추가
+            System.out.println("도달");
+
+            for (UserData userData : loadedUsers) {
+                log.info(userData.getName());
+            }
             userRepository.addAll(loadedUsers);
         } catch (IOException e) {
             e.printStackTrace();
