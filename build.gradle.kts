@@ -21,7 +21,7 @@ dependencies {
 }
 
 tasks.jar {
-    manifest { attributes["Main-Class"] = "Bot.chatBot.Main" }
+    manifest { attributes["Main-Class"] = "Bot.chatBot.Main.Main" }
     from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }

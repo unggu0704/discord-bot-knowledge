@@ -9,6 +9,10 @@ import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * userName의 유저를 Ban 하는 메서드
+ * Member 객체는 getMemberByName()로 받아온다.
+ */
 @Slf4j
 public class Ban {
 

@@ -4,20 +4,13 @@ package Bot.chatBot.Main;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
-import Bot.chatBot.Message.Filter.MessageValidator;
 import Bot.chatBot.Message.Processor.MessageProcessor;
-import Bot.data.UserData;
-
 import Bot.data.UserRepository;
-import Bot.features.Command.FrontConmmand;
-import Bot.chatBot.Message.Filter.MesssagegFilter;
 import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.*;
-import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;

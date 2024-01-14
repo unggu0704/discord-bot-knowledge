@@ -8,6 +8,7 @@ import Bot.features.Functions.Ban;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 
+
 public class YongJunBan implements BasicCommand {
 
     private static final String YONGJUN = "atfullblast";

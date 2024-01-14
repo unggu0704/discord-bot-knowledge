@@ -7,6 +7,10 @@ public enum NegativeWords {
     창녀,
     보지먹,
     따먹,
-    구멍
+    구멍,
+    씨발,
+    시발,
+    련아,
+    년아,
 
 }

@@ -38,7 +38,7 @@ public class MessageProcessor {
         }
 
         //명령어 symbol 체크
-        if (messageContent.charAt(0) == '!') {
+        if (!messageContent.isEmpty() || messageContent.charAt(0) == '!') {
             String command = messageContent.substring(1);
             //명령어 핸들러로 이동
             FrontConmmand.handleCommand(userRepository, command, userData, tc, g);
