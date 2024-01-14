@@ -12,7 +12,8 @@ public class HelpSpecialCommand implements BasicCommand {
     private static final EmbedBuilder eb = new EmbedBuilder();
 
     public void execute(UserRepository userRepository, UserData user, TextChannel tc, Guild guild, String Command) {
-        eb.setTitle(" ! 용준컷: 용준이를 죽입니다. ");
+        eb.setTitle("!링크: 다양한 링크를 제공받습니다. " +
+                "!용준컷: 용준이를 죽입니다. ");
         Main.showBuilderMeesage(tc, eb);
     }
 }

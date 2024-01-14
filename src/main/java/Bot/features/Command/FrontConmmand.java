@@ -2,6 +2,7 @@ package Bot.features.Command;
 
 import Bot.data.UserData;
 import Bot.data.UserRepository;
+import Bot.features.Command.Link.LinkCommand;
 import Bot.features.Command.Special.*;
 import Bot.features.Command.Help.*;
 import Bot.features.Command.Valorant.*;
@@ -26,8 +27,9 @@ public class FrontConmmand {
     // 기능 매핑
     static {
         COMMAND_MAP.put("도움", new HelpInfoCommand());
-        COMMAND_MAP.put("도움1", new HelpSpecialCommand());
-        COMMAND_MAP.put("도움2", new HelpValorantCommand());
+        COMMAND_MAP.put("도움1", new HelpValorantCommand());
+        COMMAND_MAP.put("도움2", new HelpSpecialCommand());
+        COMMAND_MAP.put("링크", new LinkCommand());
         COMMAND_MAP.put("발로란트", new ValorantCommand());
         COMMAND_MAP.put("참가", new ValorantCommand());
         COMMAND_MAP.put("동원령", new ValorantCommand());
