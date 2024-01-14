@@ -1,17 +1,18 @@
 
-package Bot.chatBot;
+package Bot.chatBot.Main;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import Bot.chatBot.Message.Filter.MessageValidator;
+import Bot.chatBot.Message.Processor.MessageProcessor;
 import Bot.data.UserData;
 
 import Bot.data.UserRepository;
 import Bot.features.Command.FrontConmmand;
-import Bot.features.MesssagegFilter;
+import Bot.chatBot.Message.Filter.MesssagegFilter;
 import lombok.extern.slf4j.Slf4j;
-import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -50,31 +51,7 @@ public class Main extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         log.info("로그 : 메세지 감지! ");
-        User user = event.getAuthor();
-        TextChannel tc = (TextChannel) event.getChannel();
-        Message msg = event.getMessage();
-        Guild g = event.getGuild();
-        Member member = event.getMessage().getMember();
-
-        if (user.isBot())
-            return;
-
-        UserData chatUser = new UserData(user.getName(), member, user.getId(), user.getDiscriminator(), user.getAsMention());
-        String messageContent = msg.getContentRaw(); // 채팅 메세지
-
-        if (!userRepository.findUser(chatUser))
-            userRepository.saveUser(chatUser);
-
-        if (MesssagegFilter.containsNegativeSpeech(messageContent)) {
-            MesssagegFilter.profanityFilter(messageContent, chatUser, member, tc, g, userRepository);
-            return;
-        }
-
-        //명령어 symbol 체크
-        if (messageContent.charAt(0) == '!') {
-            String command = messageContent.substring(1);
-            FrontConmmand.handleCommand(userRepository, command, chatUser, tc, g);
-        }
+        MessageProcessor.processReceivedMessage(userRepository, event);
     }
 
     private static String readTokenFromFile(String filePath) {
@@ -86,15 +63,6 @@ public class Main extends ListenerAdapter {
             return "Empty";
         }
     }
-    public static void showMessage(TextChannel tc, String message) {
-        tc.sendMessage(message).queue();
-    }
-
-    public static void showBuilderMeesage(TextChannel tc, EmbedBuilder eb) {
-        tc.sendMessageEmbeds(eb.build()).queue();
-    }
-
-
 }
 
 
