@@ -1,5 +1,7 @@
 package Bot.data;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +30,7 @@ public class UserRepository {
     public void saveJsonUser() {
         synchronized (userRepository) {
             try {
+                objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
                 objectMapper.writeValue(new File(jsonFilePath), userRepository);
                 log.info("User 저장완료");
             } catch (IOException e) {
@@ -55,6 +58,7 @@ public class UserRepository {
         }
 
         try {
+            log.info("UserData 읽기!");
             // JSON 파일을 읽어 List<UserData>로 변환
             List<UserData> loadedUsers = objectMapper.readValue(jsonFile,
                     new TypeReference<>() {

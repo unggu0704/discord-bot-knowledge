@@ -59,14 +59,14 @@ public class ValorantExecute implements BasicCommand {
             return;
 
         valorantUserLists.add(userData);
-        Main.showMessage(tc, userData.getUser().getName() + "님 참가 ! \n" + " [ 현재 인원 ] \n");
+        Main.showMessage(tc, userData.getName() + "님 참가 ! \n" + " [ 현재 인원 ] \n");
         printUserList();
     }
 
     public  void exitGame(UserData userData) {
         if (checkDupicate(userData)) {
             valorantUserLists.remove(userData);
-            Main.showMessage(tc, userData.getUser().getName() + "님 이 나셨습니다. ! \n" + " [ 현재 인원 ] \n");
+            Main.showMessage(tc, userData.getName() + "님 이 나셨습니다. ! \n" + " [ 현재 인원 ] \n");
             printUserList();
         }
 

@@ -17,12 +17,12 @@ public class MesssagegFilter {
 
         if (userRepository.findUser(user)) {
             user.isNegativeSpeechCount();
-            Main.showMessage(tc, user.getUser().getAsMention() + "   (" + user.getNegativeSpeechCount() + "/3)");
+            Main.showMessage(tc, user.getName() + "님 경고!   (" + user.getNegativeSpeechCount() + "/3)");
         }
 
         if (user.getNegativeSpeechCount() >= limitNativeSpeechCount) {
             g.ban(target, 60, TimeUnit.SECONDS).queue();
-            Main.showMessage(tc, user.getUser().getAsMention() + "제거 완료!");
+            Main.showMessage(tc, user.getName() + "제거 완료!");
         }
 
     }

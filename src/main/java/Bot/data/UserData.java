@@ -1,42 +1,32 @@
 package Bot.data;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.User;
 
+@Getter
+@Setter
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class UserData {
-    @Getter
-    @Setter
-    private User user;
-    @Getter
-    @Setter
+    @JsonIgnore
     private Member member;
-    @Getter
-    @Setter
     private int negativeSpeechCount = 0;
-    @Getter
-    @Setter
     private String name;
-    @Getter
-    @Setter
     private String id;
-    @Getter
-    @Setter
     private String discriminator;
-
+    private String mention;
     public UserData() {
     }
 
 
-    public UserData(User user, String name, Member m) {
+    public UserData(String name, Member m, String id, String discriminator, String mention) {
         this.name = name;
-        this.user = user;
         this.member = m;
-        this.id = user.getId();
-        this.discriminator = user.getDiscriminator();
+        this.id = id;
+        this.discriminator = discriminator;
+        this.mention = mention;
     }
 
     public void isNegativeSpeechCount() {

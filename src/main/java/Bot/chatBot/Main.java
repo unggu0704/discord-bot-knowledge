@@ -56,7 +56,7 @@ public class Main extends ListenerAdapter {
         Guild g = event.getGuild();
         Member member = event.getMessage().getMember();
 
-        UserData chatUser = new UserData(user, user.getName(), member);
+        UserData chatUser = new UserData(user.getName(), member, user.getId(), user.getDiscriminator(), user.getAsMention());
         String messageContent = msg.getContentRaw(); // 채팅 메세지
 
         if (!userRepository.findUser(chatUser))
