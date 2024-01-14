@@ -229,4 +229,7 @@ gradle-app.setting
 # Discord token configuration file
 Token.txt
 
+# UserData,json 파일 
+UserData.json
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,intellij,gradle,java
