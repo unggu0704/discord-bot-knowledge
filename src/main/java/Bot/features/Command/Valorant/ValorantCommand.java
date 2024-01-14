@@ -1,6 +1,6 @@
 package Bot.features.Command.Valorant;
 
-import Bot.chatBot.Main;
+import Bot.chatBot.Message.Print.Print;
 import Bot.data.UserData;
 import Bot.data.UserRepository;
 import Bot.features.Command.BasicCommand;
@@ -18,11 +18,11 @@ public class ValorantCommand implements BasicCommand {
         switch (command) {
             case "발로란트":
                 gameList.add(new ValorantExecute());
-                Main.showMessage(tc, "발로란트 하실분 @here");
+                Print.showMessage(tc, "발로란트 하실분 @here");
                 return;
             case "해산":
                 gameList.remove(findGuild(gameList, guild));
-                Main.showMessage(tc, "수고하셨습니다.");
+                Print.showMessage(tc, "수고하셨습니다.");
                 return;
         }
 

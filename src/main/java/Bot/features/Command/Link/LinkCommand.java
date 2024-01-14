@@ -1,6 +1,6 @@
 package Bot.features.Command.Link;
 
-import Bot.chatBot.Main;
+import Bot.chatBot.Message.Print.Print;
 import Bot.data.UserData;
 import Bot.data.UserRepository;
 import Bot.features.Command.BasicCommand;
@@ -14,6 +14,6 @@ public class LinkCommand implements BasicCommand {
     public void execute(UserRepository userRepository, UserData user, TextChannel tc, Guild guild, String Command) {
         eb.setTitle("발로란트 전적 사이트", " https://dak.gg/valorant");
         eb.setTitle("하스스톤 야생 사이트", "https://tempostorm.com/hearthstone");
-        Main.showBuilderMeesage(tc, eb);
+        Print.showBuilderMeesage(tc, eb);
     }
 }

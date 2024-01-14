@@ -1,4 +1,4 @@
-package Bot.features;
+package Bot.chatBot.Message.Filter;
 
 public enum NegativeWords {
     씹,

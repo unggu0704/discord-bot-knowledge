@@ -20,6 +20,13 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.12.5")
 }
 
+tasks.jar {
+    manifest { attributes["Main-Class"] = "Bot.chatBot.Main" }
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+
 tasks.test {
     useJUnitPlatform()
 }

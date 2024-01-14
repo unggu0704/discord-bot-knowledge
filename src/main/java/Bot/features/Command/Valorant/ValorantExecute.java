@@ -1,6 +1,6 @@
 package Bot.features.Command.Valorant;
 
-import Bot.chatBot.Main;
+import Bot.chatBot.Message.Print.Print;
 import Bot.data.UserData;
 import Bot.data.UserRepository;
 import Bot.features.Command.BasicCommand;
@@ -18,7 +18,7 @@ public class ValorantExecute implements BasicCommand {
     private Guild guild;
     private TextChannel tc;
     public void execute(UserRepository userRepository, UserData user, TextChannel tc, Guild guild, String command) {
-        Main.showMessage(tc, "발로란트 하실분 @here");
+        Print.showMessage(tc, "발로란트 하실분 @here");
         this.guild = guild;
         this.tc = tc;
 
@@ -40,12 +40,13 @@ public class ValorantExecute implements BasicCommand {
 
     public  boolean checkSize() {
         if (valorantUserLists.size() >=5) {
-            Main.showMessage(tc, "5명이 가득핬습니다.");
+            Print.showMessage(tc, "5명이 가득핬습니다.");
             return true;
         }
 
         if (valorantUserLists.isEmpty()) {
-            Main.showMessage(tc, "아무도 참가한 사람이 없습니다.");
+            Print.showMessage(tc, "아무도 참가한 사람이 없습니다.");
+
             return true;
         }
         return false;
@@ -59,23 +60,23 @@ public class ValorantExecute implements BasicCommand {
             return;
 
         valorantUserLists.add(userData);
-        Main.showMessage(tc, userData.getName() + "님 참가 ! \n" + " [ 현재 인원 ] \n");
+        Print.showMessage(tc, userData.getName() + "님 참가 ! \n" + " [ 현재 인원 ] \n");
         printUserList();
     }
 
     public  void exitGame(UserData userData) {
         if (checkDupicate(userData)) {
             valorantUserLists.remove(userData);
-            Main.showMessage(tc, userData.getName() + "님 이 나셨습니다. ! \n" + " [ 현재 인원 ] \n");
+            Print.showMessage(tc, userData.getName() + "님 이 나셨습니다. ! \n" + " [ 현재 인원 ] \n");
             printUserList();
         }
 
-        Main.showMessage(tc, "팀에 참가 되어 있지 않은 유저입니다.");
+        Print.showMessage(tc, "팀에 참가 되어 있지 않은 유저입니다.");
     }
 
 
     public  void forceStartGame() {
-        Main.showMessage(tc, "@everyone");
+        Print.showMessage(tc, "@everyone");
     }
 
     public  void printUserList() {
@@ -85,7 +86,7 @@ public class ValorantExecute implements BasicCommand {
             sb.append(userData.getName()).append("\n");
         }
 
-        Main.showBuilderMeesage(tc, new EmbedBuilder().setTitle(sb.toString()));
+        Print.showBuilderMeesage(tc, new EmbedBuilder().setTitle(sb.toString()));
     }
 
     @Override

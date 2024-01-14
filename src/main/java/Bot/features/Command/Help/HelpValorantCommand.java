@@ -1,6 +1,6 @@
 package Bot.features.Command.Help;
 
-import Bot.chatBot.Main;
+import Bot.chatBot.Message.Print.Print;
 import Bot.data.UserData;
 import Bot.data.UserRepository;
 import Bot.features.Command.BasicCommand;
@@ -20,7 +20,7 @@ public class HelpValorantCommand implements BasicCommand {
                 + "!해산: 발로란트 파티 리스트를 제거합니다. \n"
                 + "!가이드: 발로란트 관련 가이드를 봅니다."
         );
-        Main.showBuilderMeesage(tc, eb);
+        Print.showBuilderMeesage(tc, eb);
     }
 
 }

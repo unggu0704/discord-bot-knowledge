@@ -1,6 +1,6 @@
 package Bot.features.Command.Help;
 
-import Bot.chatBot.Main;
+import Bot.chatBot.Message.Print.Print;
 import Bot.data.UserData;
 import Bot.data.UserRepository;
 import Bot.features.Command.BasicCommand;
@@ -15,7 +15,7 @@ public class HelpInfoCommand implements BasicCommand {
         eb.setTitle("!도움1 : 발로란트 관련 명령어 \n"
                 + "!도움2: 기타 명령어 "
         );
-        Main.showBuilderMeesage(tc, eb);
+        Print.showBuilderMeesage(tc, eb);
 
     }
 }
