@@ -14,8 +14,7 @@ public class Ban {
 
     public static void execute(UserRepository userRepository, TextChannel tc, Guild guild, String userName) {
 
-        Member banMember = userRepository.getMemberByName(userName);
-        log.info(banMember.toString() + "을 찾으러감");
+        Member banMember = userRepository.getMemberByName(guild, userName);
         if (banMember == null) {
             Main.showMessage(tc, "밴 할 유저를 찾을수가 없습니다.");
             return;
@@ -23,8 +22,7 @@ public class Ban {
 
         guild.ban(banMember, 600, TimeUnit.SECONDS).queue();
         log.info("ban 실행");
-        Main.showMessage(tc, "bye~ " + userName + "씨~");
+        Main.showMessage(tc, userName + "를 죽였습니다!");
     }
-
 
 }
