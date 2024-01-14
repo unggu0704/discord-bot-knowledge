@@ -38,7 +38,7 @@ public class Main extends ListenerAdapter {
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .build();
         jda.getPresence().setStatus(OnlineStatus.ONLINE);
-        jda.getPresence().setActivity(Activity.playing("test!"));
+        jda.getPresence().setActivity(Activity.playing("서버를 관리 "));
         jda.addEventListener(new Main());
 
     }
@@ -49,12 +49,15 @@ public class Main extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-
+        log.info("로그 : 메세지 감지! ");
         User user = event.getAuthor();
         TextChannel tc = (TextChannel) event.getChannel();
         Message msg = event.getMessage();
         Guild g = event.getGuild();
         Member member = event.getMessage().getMember();
+
+        if (user.isBot())
+            return;
 
         UserData chatUser = new UserData(user.getName(), member, user.getId(), user.getDiscriminator(), user.getAsMention());
         String messageContent = msg.getContentRaw(); // 채팅 메세지
@@ -62,9 +65,10 @@ public class Main extends ListenerAdapter {
         if (!userRepository.findUser(chatUser))
             userRepository.saveUser(chatUser);
 
-        //비속어 필터 처리
-        if (MesssagegFilter.containsNegativeSpeech(messageContent))
+        if (MesssagegFilter.containsNegativeSpeech(messageContent)) {
             MesssagegFilter.profanityFilter(messageContent, chatUser, member, tc, g, userRepository);
+            return;
+        }
 
         //명령어 symbol 체크
         if (messageContent.charAt(0) == '!') {
@@ -78,7 +82,7 @@ public class Main extends ListenerAdapter {
             return br.readLine().split("=")[1].trim();
         } catch (IOException e) {
             e.printStackTrace();
-            //log.error("Token 읽기 실패!");
+            log.error("Token 읽기 실패!");
             return "Empty";
         }
     }
