@@ -4,8 +4,16 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.User;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
+
+@Slf4j
 @Getter
 @Setter
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
@@ -32,4 +40,15 @@ public class UserData {
     public void isNegativeSpeechCount() {
         negativeSpeechCount++;
     }
+
+    @Override
+    public boolean equals(@NotNull Object object) {
+        UserData userData = (UserData) object;
+        return Objects.equals(this.name, userData.name);
+    }
+
+    public Member getMemberInfo(Guild guild) {
+        return guild.getMemberById(id);
+    }
+
 }

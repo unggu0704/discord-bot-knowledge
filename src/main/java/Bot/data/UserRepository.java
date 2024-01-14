@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 
 import java.io.*;
@@ -30,7 +31,6 @@ public class UserRepository {
     public void saveJsonUser() {
         synchronized (userRepository) {
             try {
-                objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
                 objectMapper.writeValue(new File(jsonFilePath), userRepository);
                 log.info("User 저장완료");
             } catch (IOException e) {
@@ -39,12 +39,13 @@ public class UserRepository {
         }
     }
 
-    public Member getMemberByName(String name) {
+    public Member getMemberByName(Guild guild, String name) {
         for (UserData userData : userRepository) {
             if (userData.getName().equals(name)) {
-                return userData.getMember();
+                return userData.getMemberInfo(guild);
             }
         }
+
         return null;
     }
 
@@ -53,22 +54,19 @@ public class UserRepository {
 
         // 파일이 존재하지 않으면 빈 userRepository를 생성
         if (!jsonFile.exists()) {
-            log.info("Json 데이터가 없음.");
             return;
         }
 
         try {
-            log.info("UserData 읽기!");
             // JSON 파일을 읽어 List<UserData>로 변환
             List<UserData> loadedUsers = objectMapper.readValue(jsonFile,
                     new TypeReference<>() {
                     });
 
             // 읽어온 데이터를 userRepository에 추가
-            System.out.println("도달");
 
             for (UserData userData : loadedUsers) {
-                log.info(userData.getName());
+                log.info("[로그] : " + userData.getName() + "를 읽음!");
             }
             userRepository.addAll(loadedUsers);
         } catch (IOException e) {
