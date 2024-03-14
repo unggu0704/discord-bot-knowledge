@@ -27,3 +27,57 @@
 ## 데이터 저장
 - JSON으로 user 정보 저장
 
+## 파일 구조
+
+```
+
+└─src
+    └─main
+        └─java
+            └─Bot
+                ├─chatBot
+                │  ├─Main
+                │  │      Main.java
+                │  │      
+                │  └─Message
+                │      ├─Filter
+                │      │      MessageValidator.java
+                │      │      MesssagegFilter.java
+                │      │      NegativeWords.java
+                │      │      
+                │      ├─Print
+                │      │      Print.java
+                │      │      
+                │      └─Processor
+                │              MessageProcessor.java
+                │              
+                ├─data
+                │      UserData.java
+                │      UserDTO.java
+                │      UserRepository.java
+                │      
+                └─features
+                    ├─Command
+                    │  │  BasicCommand.java
+                    │  │  FrontConmmand.java
+                    │  │  
+                    │  ├─Help
+                    │  │      HelpInfoCommand.java
+                    │  │      HelpSpecialCommand.java
+                    │  │      HelpValorantCommand.java
+                    │  │      
+                    │  ├─Link
+                    │  │      LinkCommand.java
+                    │  │      
+                    │  ├─Special
+                    │  │      exampleCommand.java
+                    │  │      YongJunBan.java
+                    │  │      
+                    │  └─Valorant
+                    │          ValorantCommand.java
+                    │          ValorantExecute.java
+                    │          
+                    └─Functions
+                            Ban.java
+                            
+```
