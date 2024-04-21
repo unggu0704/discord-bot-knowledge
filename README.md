@@ -2,7 +2,7 @@
 ![Static Badge](https://img.shields.io/badge/Java-3766AB)
  ![Static Badge](https://img.shields.io/badge/DiscordApi-JDA-8A2BE2) 
 
-# Discord 識
+# Discord 識(지식)
 ![image](https://github.com/UNGGU0704/java_discord_bot/assets/130115689/02987509-bb25-412f-a919-3b70f6efe4ad)
 
 
