@@ -20,7 +20,7 @@ import java.util.Objects;
 public class UserData {
     @JsonIgnore
     private Member member;
-    private int negativeSpeechCount = 2;
+    private int negativeSpeechCount = 0;
     private String name;
     private String id;
     private String discriminator;
@@ -35,6 +35,11 @@ public class UserData {
         this.id = id;
         this.discriminator = discriminator;
         this.mention = mention;
+    }
+
+    public void setMember(String name, Member member) {
+        this.name = name;
+        this.member = member;
     }
 
     public void isNegativeSpeechCount() {

@@ -49,6 +49,15 @@ public class UserRepository {
         return null;
     }
 
+    public UserData getUserDataByName(String name) {
+        for (UserData userData : userRepository) {
+            if (userData.getName().equals(name)) {
+                return userData;
+            }
+        }
+        return null;
+    }
+
     public void loadJsonUser() {
         File jsonFile = new File(jsonFilePath);
 

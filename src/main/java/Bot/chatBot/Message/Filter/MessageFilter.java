@@ -26,12 +26,12 @@ public class MessageFilter {
             user.isNegativeSpeechCount();
 
             Print.showMessage(tc, user.getName() + "님 경고!   (" + user.getNegativeSpeechCount() + "/3)");
-
+            userRepository.saveJsonUser();
 
         }
         if (user.getNegativeSpeechCount() >= limitNativeSpeechCount) {
             g.ban(target, 60, TimeUnit.SECONDS).queue();
-            Print.showMessage(tc, user.getName() + "제거 완료! ㅋㅋ 적당히 하시지 그랬어요 ㅋㅋ");
+            Print.showMessage(tc, user.getName() + "제거 완료! ㅋㅋ");
         }
 
     }
@@ -43,18 +43,23 @@ public class MessageFilter {
      */
     public static void checkOffline(TextChannel tc, Member member) {
 
+        if (member == null) {
+            log.info("멤버 정보를 가져올 수 없음");
+            return;
+        }
+
         OnlineStatus onlineStatus= member.getOnlineStatus();
         tc.getGuild().retrieveMember(member.getUser()).queue(fetchedMember -> {
             OnlineStatus onlineStatus1 = fetchedMember.getOnlineStatus();
             log.info("현재 상태 (fetch): " + onlineStatus1);
-
-
         });
 
         log.info("현재 상태 : " + onlineStatus);
 
+        String displayName = member.getEffectiveName();
+
         if (onlineStatus == OnlineStatus.OFFLINE) {
-            Print.showMessage(tc, member.getNickname() + "님은 현재 *오프라인 상태*에서 말하고 있습니다.");
+            Print.showMessage(tc, displayName + "님은 현재 *오프라인 상태*에서 말하고 있습니다.");
             return;
         } else if (onlineStatus == OnlineStatus.ONLINE) {
             return;
@@ -64,11 +69,12 @@ public class MessageFilter {
     }
 
     public static boolean containsNegativeSpeech(String content) {
-        for (NegativeWords speech : NegativeWords.values()) {
-            if (content.contains(speech.name())) {
-                return true;
+            content = content.replaceAll("\\s+", "");
+            for (NegativeWords speech : NegativeWords.values()) {
+                if (content.contains(speech.name())) {
+                    return true;
+                }
             }
-        }
-        return false;
+            return false;
     }
 }

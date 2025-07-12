@@ -36,10 +36,15 @@ public class MessageProcessor {
 
         checkOAuth2(g, tc);
 
-        UserData userData = new UserData(user.getName(), member, user.getId(), user.getDiscriminator(), user.getAsMention());
+        UserData userData = userRepository.getUserDataByName(user.getName());
 
-        if (!userRepository.findUser(userData))
+        if (userData == null) {
+            userData = new UserData(user.getName(), member, user.getId(), user.getDiscriminator(), user.getAsMention());
             userRepository.saveUser(userData);
+        } else {
+            userData.setMember(userData.getName(), member);
+        }
+
 
         preProcessMessage(userData, messageContent, tc, userRepository);
 
@@ -63,7 +68,7 @@ public class MessageProcessor {
 
         //부정적인 단어 체크
         if (MessageFilter.containsNegativeSpeech(messageContent)) {
-            MessageFilter.profanityFilter(userData,tc, userRepository);
+            MessageFilter.profanityFilter(userData, tc, userRepository);
         }
 
         MessageFilter.checkOffline(tc, userData.getMember());
