@@ -37,6 +37,7 @@ public class FrontConmmand {
         COMMAND_MAP.put("현재인원", new ValorantCommand());
         COMMAND_MAP.put("해산", new ValorantCommand());
         COMMAND_MAP.put("용준컷", new YongJunBan());
+        COMMAND_MAP.put("팀 나누기", new ValorantCommand());
         // 추가 명령어 매핑 여기에 아기
     }
 

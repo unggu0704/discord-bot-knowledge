@@ -4,12 +4,15 @@ import Bot.chatBot.Message.Print.Print;
 import Bot.data.UserData;
 import Bot.data.UserRepository;
 import Bot.features.Command.BasicCommand;
+import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class ValorantCommand implements BasicCommand {
 
     private static final List<ValorantExecute> gameList = new ArrayList<>();
@@ -24,9 +27,22 @@ public class ValorantCommand implements BasicCommand {
                 gameList.remove(findGuild(gameList, guild));
                 Print.showMessage(tc, "수고하셨습니다.");
                 return;
+            case "팀 나누기":
+                divideTeam(tc, guild);
+                return;
         }
 
         findGuild(gameList, guild).execute(userRepository, user, tc, guild, command);
+    }
+
+    private void divideTeam(TextChannel tc, Guild guild) {
+        List<Member> members = tc.getMembers();
+
+        for (Member member : members) {
+            log.info("member: " + member);
+        }
+
+
     }
 
     public <T> T findGuild(List<T> listByGuild, Guild guild) {

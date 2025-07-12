@@ -20,7 +20,7 @@ import java.util.Objects;
 public class UserData {
     @JsonIgnore
     private Member member;
-    private int negativeSpeechCount = 0;
+    private int negativeSpeechCount = 2;
     private String name;
     private String id;
     private String discriminator;

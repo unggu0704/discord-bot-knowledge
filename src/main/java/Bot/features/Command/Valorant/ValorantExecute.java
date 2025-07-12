@@ -67,7 +67,7 @@ public class ValorantExecute implements BasicCommand {
     public  void exitGame(UserData userData) {
         if (checkDupicate(userData)) {
             valorantUserLists.remove(userData);
-            Print.showMessage(tc, userData.getName() + "님 이 나셨습니다. ! \n" + " [ 현재 인원 ] \n");
+            Print.showMessage(tc, userData.getName() + "님 이 나가셨습니다. ! \n" + " [ 현재 인원 ] \n");
             printUserList();
         }
 
