@@ -30,8 +30,8 @@ public class MessageFilter {
 
         }
         if (user.getNegativeSpeechCount() >= limitNativeSpeechCount) {
+            Print.showMessage(tc, user.getName() + "를 **제거했습니다.**");
             g.ban(target, 60, TimeUnit.SECONDS).queue();
-            Print.showMessage(tc, user.getName() + "제거 완료! ㅋㅋ");
         }
 
     }
@@ -59,7 +59,7 @@ public class MessageFilter {
         String displayName = member.getEffectiveName();
 
         if (onlineStatus == OnlineStatus.OFFLINE) {
-            Print.showMessage(tc, displayName + "님은 현재 *오프라인 상태*에서 말하고 있습니다.");
+            Print.showMessage(tc, displayName + "님은 현재 **오프라인 상태**에서 말하고 있습니다.");
             return;
         } else if (onlineStatus == OnlineStatus.ONLINE) {
             return;

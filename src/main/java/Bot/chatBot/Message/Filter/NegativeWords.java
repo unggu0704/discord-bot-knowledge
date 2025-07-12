@@ -13,6 +13,12 @@ public enum NegativeWords {
     시발,
     련아,
     년아,
+    시키창,
+    시키호,
+    시키년,
+    시키개,
+    시키따,
+
 
     // 기본 욕설
     병신,
@@ -120,7 +126,6 @@ public enum NegativeWords {
     ㄲㅈ,
 
     // 띄어쓰기 우회
-    시발,
     개같은,
     개똥같,
     똥같,
@@ -135,7 +140,6 @@ public enum NegativeWords {
     덜떨어진,
     싸이코,
     사이코,
-    또라이,
     정신병,
     미친놈,
     미친년,

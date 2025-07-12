@@ -26,7 +26,10 @@ public class Main extends ListenerAdapter {
 
     public static void main(String[] args) {
         log.info("봇이 실행됨!");
-        String Token = readTokenFromFile("Token.txt");
+        String Token = System.getenv("DISCORD_TOKEN");
+        if (Token == null || Token.isEmpty()) {
+            Token = readTokenFromFile("Token.txt");
+        }
         if (Token.equals("Empty")) {
             throw new RuntimeException("[ERROR] | 토큰을 읽는데 실패함!");
         }

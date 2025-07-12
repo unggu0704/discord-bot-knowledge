@@ -14,12 +14,18 @@ import java.util.List;
 
 @Slf4j
 public class UserRepository {
-    private final String jsonFilePath = "UserData.json";
+    private final String jsonFilePath;
     private final List<UserData> userRepository  = new ArrayList<>();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-
     public UserRepository() {
+        // 환경변수가 있으면 그 경로 사용
+        String dataPath = System.getenv("DATA_PATH");
+        if (dataPath != null) {
+            jsonFilePath = dataPath + "/UserData.json";
+        } else {
+            jsonFilePath = "UserData.json";
+        }
         loadJsonUser();
     }
 
