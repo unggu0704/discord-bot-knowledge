@@ -28,6 +28,7 @@ public class Main extends ListenerAdapter {
         log.info("봇이 실행됨!");
         String Token = System.getenv("DISCORD_TOKEN");
         if (Token == null || Token.isEmpty()) {
+            log.info("환경변수를 읽지 못함 : " + Token);
             Token = readTokenFromFile("Token.txt");
         }
         if (Token.equals("Empty")) {
