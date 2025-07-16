@@ -10,12 +10,14 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.managers.Presence;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class MessageFilter {
 
     private static final int limitNativeSpeechCount = 3;
+    private static Random random = new Random();
     public static void profanityFilter(UserData user,  TextChannel tc, UserRepository userRepository) {
         Print.showMessage(tc, "부정적인 발언이 감지 되었습니다. 지속적으로 사용시 재제됨을 알려드립니다.");
 
@@ -59,13 +61,19 @@ public class MessageFilter {
         String displayName = member.getEffectiveName();
 
         if (onlineStatus == OnlineStatus.OFFLINE) {
-            Print.showMessage(tc, displayName + "님은 현재 **오프라인 상태**에서 말하고 있습니다.");
+            int messageRandom = random.nextInt(2);
+
+            if (messageRandom == 1)
+                Print.showMessage(tc, displayName + "님은 현재 **오프라인 상태**에서 말하고 있습니다.");
+
             return;
         } else if (onlineStatus == OnlineStatus.ONLINE) {
             return;
         }
+        int messageRandom = random.nextInt(4);
 
-        Print.showMessage(tc, member.getNickname() + "님은 온라인 상태로 바꾸는게 좋아보여요!");
+        if (messageRandom == 3)
+            Print.showMessage(tc, member.getNickname() + "님은 온라인 상태로 바꾸는게 좋아보여요!");
     }
 
     public static boolean containsNegativeSpeech(String content) {
