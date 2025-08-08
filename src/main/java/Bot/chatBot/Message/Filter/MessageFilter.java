@@ -61,7 +61,7 @@ public class MessageFilter {
         String displayName = member.getEffectiveName();
 
         if (onlineStatus == OnlineStatus.OFFLINE) {
-            int messageRandom = random.nextInt(2);
+            int messageRandom = random.nextInt(3);
 
             if (messageRandom == 1)
                 Print.showMessage(tc, displayName + "님은 현재 **오프라인 상태**에서 말하고 있습니다.");
@@ -70,7 +70,7 @@ public class MessageFilter {
         } else if (onlineStatus == OnlineStatus.ONLINE) {
             return;
         }
-        int messageRandom = random.nextInt(4);
+        int messageRandom = random.nextInt(8);
 
         if (messageRandom == 3)
             Print.showMessage(tc, member.getNickname() + "님은 온라인 상태로 바꾸는게 좋아보여요!");
