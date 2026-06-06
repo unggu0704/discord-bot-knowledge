@@ -16,6 +16,8 @@
 # AWS User-specific
 .idea/**/aws.xml
 
+.claude
+
 # Generated files
 .idea/**/contentModel.xml
 

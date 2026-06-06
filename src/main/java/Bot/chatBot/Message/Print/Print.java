@@ -8,7 +8,8 @@ public class Print {
     public static void showMessage(TextChannel tc, String message) {
         tc.sendMessage(message).queue();
     }
-    public static void showBuilderMeesage(TextChannel tc, EmbedBuilder eb) {
+
+    public static void showBuilderMessage(TextChannel tc, EmbedBuilder eb) {
         tc.sendMessageEmbeds(eb.build()).queue();
     }
 }

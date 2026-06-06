@@ -1,11 +1,11 @@
 package Bot.features.Command.Valorant;
 
 import Bot.chatBot.Message.Print.Print;
-import Bot.data.UserData;
 import Bot.data.UserRepository;
 import Bot.features.Command.BasicCommand;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,28 +14,38 @@ public class ValorantCommand implements BasicCommand {
 
     private static final List<ValorantExecute> gameList = new ArrayList<>();
 
-    public void execute(UserRepository userRepository, UserData user, TextChannel tc, Guild guild, String command) {
+    @Override
+    public void execute(UserRepository userRepository, MessageReceivedEvent event) {
+        TextChannel tc = (TextChannel) event.getChannel();
+        Guild guild = event.getGuild();
+        String command = event.getMessage().getContentRaw().substring(1);
+
         switch (command) {
             case "발로란트":
-                gameList.add(new ValorantExecute());
+                gameList.add(new ValorantExecute(tc, guild));
                 Print.showMessage(tc, "발로란트 하실분 @here");
                 return;
             case "해산":
-                gameList.remove(findGuild(gameList, guild));
-                Print.showMessage(tc, "수고하셨습니다.");
+                ValorantExecute session = findSession(guild);
+                if (session != null) {
+                    gameList.remove(session);
+                    Print.showMessage(tc, "수고하셨습니다.");
+                }
                 return;
         }
 
-        findGuild(gameList, guild).execute(userRepository, user, tc, guild, command);
+        ValorantExecute session = findSession(guild);
+        if (session != null) {
+            session.execute(userRepository, event);
+        }
     }
 
-    public <T> T findGuild(List<T> listByGuild, Guild guild) {
-        for (T thing : listByGuild) {
-            if (thing.equals(guild)) {
-                return thing;
+    private ValorantExecute findSession(Guild guild) {
+        for (ValorantExecute session : gameList) {
+            if (session.isGuild(guild)) {
+                return session;
             }
         }
-
-        throw new RuntimeException("찾는 길드가 없음");
+        return null;
     }
 }
