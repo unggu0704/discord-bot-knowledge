@@ -87,7 +87,7 @@ public class ValorantExecute implements BasicCommand {
             return;
         }
         valorantUserLists.remove(userData);
-        Print.showMessage(tc, userData.getName() + "님이 나셨습니다. \n [ 현재 인원 ]");
+        Print.showMessage(tc, userData.getName() + "님이 나가셨습니다. \n [ 현재 인원 ]");
         printUserList();
     }
 

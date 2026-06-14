@@ -3,13 +3,16 @@ package Bot.features.Command.Valorant;
 import Bot.chatBot.Message.Print.Print;
 import Bot.data.UserRepository;
 import Bot.features.Command.BasicCommand;
+import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class ValorantCommand implements BasicCommand {
 
     private static final List<ValorantExecute> gameList = new ArrayList<>();
@@ -32,6 +35,9 @@ public class ValorantCommand implements BasicCommand {
                     Print.showMessage(tc, "수고하셨습니다.");
                 }
                 return;
+            case "팀 나누기":
+                divideTeam(tc, guild);
+                return;
         }
 
         ValorantExecute session = findSession(guild);
@@ -47,5 +53,12 @@ public class ValorantCommand implements BasicCommand {
             }
         }
         return null;
+    }
+
+    private void divideTeam(TextChannel tc, Guild guild) {
+        List<Member> members = tc.getMembers();
+        for (Member member : members) {
+            log.info("member: " + member);
+        }
     }
 }

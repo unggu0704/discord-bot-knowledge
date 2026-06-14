@@ -37,6 +37,11 @@ public class UserData {
         this.mention = mention;
     }
 
+    public void setMember(String name, Member member) {
+        this.name = name;
+        this.member = member;
+    }
+
     public void isNegativeSpeechCount() {
         negativeSpeechCount++;
     }

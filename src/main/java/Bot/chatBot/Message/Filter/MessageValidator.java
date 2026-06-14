@@ -1,9 +1,10 @@
 package Bot.chatBot.Message.Filter;
 
+import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
 
-
+@Slf4j
 public class MessageValidator {
 
     /**
@@ -16,6 +17,8 @@ public class MessageValidator {
         for (Message.Attachment attachment : message.getAttachments()) {
             String fileName = attachment.getFileName();
             if (user.isBot() || fileName != null && (fileName.endsWith(".png") || fileName.endsWith(".jpg") || fileName.endsWith(".jpeg"))) {
+               log.info("Bot이 말하는 것은 측정하지 않음");
+
                 return true;
             }
         }
