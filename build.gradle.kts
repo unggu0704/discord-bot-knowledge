@@ -20,6 +20,7 @@ dependencies {
     annotationProcessor ("org.projectlombok:lombok:1.18.24")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.12.5")
     implementation ("org.apache.commons:commons-lang3:3.12.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }
 
 java {
