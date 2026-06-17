@@ -51,7 +51,7 @@ public class ValoIntelListener extends ListenerAdapter {
 
                 EmbedBuilder eb = new EmbedBuilder()
                         .setTitle("🎮 " + name + "#" + tag)
-                        .setDescription("무엇을 분석할까요?")
+                        .setDescription("오니의 분석이 준비되었어!")
                         .setColor(new Color(0xFF4655));
 
                 event.getHook().sendMessageEmbeds(eb.build())

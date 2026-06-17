@@ -103,6 +103,12 @@ public class MatchDataProcessor {
             int myScore = scores[0];
             int enemyScore = scores[1];
 
+            // ACS = 라운드 합산 점수 ÷ 총 라운드 수
+            int totalRounds = myScore + enemyScore;
+            int acs = totalRounds > 0
+                    ? stats.path("score").asInt(0) / totalRounds
+                    : stats.path("score").asInt(0);
+
             result.add(new MatchSummary(
                     metadata.path("map").path("name").asText(""),
                     target.path("agent").path("name").asText(""),
@@ -114,7 +120,7 @@ public class MatchDataProcessor {
                     round2(ratio(kills, deaths)),
                     round2(ratio(kills + assists, deaths)),
                     round2(hsPercent),
-                    stats.path("score").asInt(0)
+                    acs
             ));
         }
         return result;
@@ -167,8 +173,14 @@ public class MatchDataProcessor {
         player.put("assists", assists);
         player.put("kd", round2(ratio(kills, deaths)));
         player.put("kda", round2(ratio(kills + assists, deaths)));
+        // ACS = 라운드 합산 점수 ÷ 총 라운드 수
+        int totalRounds = scores[0] + scores[1];
+        int acs = totalRounds > 0
+                ? stats.path("score").asInt(0) / totalRounds
+                : stats.path("score").asInt(0);
+
         player.put("headshotPercent", round2(hsPercent));
-        player.put("acs", stats.path("score").asInt(0));
+        player.put("acs", acs);
         player.put("damageDealt", stats.path("damage").path("dealt").asInt(0));
         player.put("damageReceived", stats.path("damage").path("received").asInt(0));
         root.set("player", player);
