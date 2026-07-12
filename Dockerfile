@@ -9,7 +9,7 @@ COPY . .
 RUN gradle build --no-daemon && ls -al build/libs/
 
 # 4. JDK 17 실행 환경
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jre-jammy
 
 # 5. 작업 디렉토리 설정
 WORKDIR /app
