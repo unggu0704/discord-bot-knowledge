@@ -1,0 +1,8 @@
+.git
+.gradle
+.idea
+build
+Token.txt
+UserData.json
+.deploy_key_tmp
+*.jar
