@@ -1,5 +1,5 @@
-# 1. Gradle 8.2 + JDK 17을 포함한 빌드 환경
-FROM gradle:8.2-jdk17 AS builder
+# 1. Gradle 8.2 + JDK 17을 포함한 빌드 환경 (빌드는 항상 러너의 네이티브 아키텍처로 실행 - QEMU 에뮬레이션 방지)
+FROM --platform=$BUILDPLATFORM gradle:8.2-jdk17 AS builder
 
 # 2. 작업 디렉토리 설정 및 코드 복사
 WORKDIR /app
