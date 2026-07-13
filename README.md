@@ -11,9 +11,16 @@
 
 본 프로그램은 오픈소스 api인 *[jda](https://github.com/discord-jda/JDA)* 를 활용해서 만든 Java기반 Discord Bot 입니다.
 
+**기술 스택**
+Java 17, JDA, Oracle VM A1
+
+**API**
+Claude API, Herik API
+
+
 **개발 기간** 
- 2022. 08 ~ 2022. 09
+ 2022. 08 ~ 2022. 09, 2024 01 ~ 2024 06 (리팩토링)
 
 **배포**
-
 push -> github action -> GHCR Image 저장 -> Oracle VM에 배포 =
+
